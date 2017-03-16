@@ -5,8 +5,14 @@
  */
 package go_rentals;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.MessageFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -51,9 +57,9 @@ public class rental extends javax.swing.JFrame {
         pinjam = new javax.swing.JTextField();
         vixion = new javax.swing.JRadioButton();
         vario = new javax.swing.JRadioButton();
-        exit = new javax.swing.JButton();
         lama = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        view = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -62,6 +68,7 @@ public class rental extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tpesan = new javax.swing.JTable();
         print = new javax.swing.JButton();
+        exit = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,6 +131,11 @@ public class rental extends javax.swing.JFrame {
 
         pesan.setForeground(new java.awt.Color(102, 102, 102));
         pesan.setText("SAVE");
+        pesan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesanActionPerformed(evt);
+            }
+        });
         jPanel2.add(pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 70, 30));
         jPanel2.add(kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 130, -1));
         jPanel2.add(nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 130, -1));
@@ -143,20 +155,20 @@ public class rental extends javax.swing.JFrame {
         btng1.add(vario);
         vario.setText("Vario");
         jPanel2.add(vario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 130, -1));
-
-        exit.setForeground(new java.awt.Color(102, 102, 102));
-        exit.setText("EXIT");
-        exit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitActionPerformed(evt);
-            }
-        });
-        jPanel2.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 70, 30));
         jPanel2.add(lama, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 130, -1));
 
         jLabel14.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
         jLabel14.setText("Motor");
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+
+        view.setForeground(new java.awt.Color(102, 102, 102));
+        view.setText("VIEW");
+        view.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewActionPerformed(evt);
+            }
+        });
+        jPanel2.add(view, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 70, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 250, 320));
 
@@ -183,11 +195,11 @@ public class rental extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Nama", "No.Struk", "No.Pol", "Tgl.Pinjam", "Tgl.Kembali", "Motor"
+                "Nama", "Struk", "Pol", "Pinjam", "Kembali", "Motor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -196,15 +208,25 @@ public class rental extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tpesan);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 540, 120));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 540, 90));
 
+        print.setForeground(new java.awt.Color(102, 102, 102));
         print.setText("PRINT");
         print.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 printActionPerformed(evt);
             }
         });
-        jPanel1.add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 540, -1));
+        jPanel1.add(print, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 270, -1));
+
+        exit.setForeground(new java.awt.Color(102, 102, 102));
+        exit.setText("EXIT");
+        exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 410, 270, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 440));
 
@@ -236,6 +258,75 @@ MessageFormat header = new MessageFormat("Biodata SIswa SMK Telkom Malan");
       new home().show();
 dispose();   // TODO add your handling code here:
     }//GEN-LAST:event_exitActionPerformed
+
+    private void pesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesanActionPerformed
+ String JK = "";
+    if(vario.isSelected())
+{   
+}
+    else  {
+    JK = "Vario";
+}      
+    if (vixion.isSelected())
+    JK = "Vixion";
+        if ("".equals(nama.getText()) || "".equals(struk.getText())|| "".equals(pol.getText())|| "".equals(pinjam.getText())|| "".equals(kembali.getText())){
+JOptionPane.showMessageDialog(this, "Harap Lengkapi Data", "Error", JOptionPane.WARNING_MESSAGE);
+
+
+
+}else{
+    String SQL = "INSERT INTO tb_rental (user,nstruk,npol,tglp,tglk,motor)"+
+            "VALUES('"+nama.getText()+"','"+struk.getText()+"','"+pol.getText()+"','"+pinjam.getText()+"','"+kembali.getText()+"')";
+int status = KoneksiDB.execute(SQL);
+if(status == 1){
+    JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan","Sukses", JOptionPane.INFORMATION_MESSAGE);
+    selectData();
+}else{
+    JOptionPane.showMessageDialog(this,"Data gagal ditambahkan", "Sukses", JOptionPane.WARNING_MESSAGE);
+}
+
+}        // TODO add your handling code here:
+    }//GEN-LAST:event_pesanActionPerformed
+
+    private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
+selectData();}
+        public void selectData(){
+            String JK = "";
+    if(vario.isSelected())
+{   
+}
+    else  {
+    JK = "Vario";
+}      
+    if (vixion.isSelected())
+    JK = "Vixion";
+        String kolom[] = {"Nama","Struk","Pol","Pinjam","Kembali","Motor"};
+        DefaultTableModel dtm = new DefaultTableModel(null,kolom);        //To change body of generated methods, choose Tools | Templates.
+        String SQL = "SELECT * FROM tb_rental";
+        ResultSet rs = KoneksiDB.executeQuery(SQL);
+        
+  
+        try {
+            while(rs.next()) 
+            {
+                String Nama= rs.getString(1);
+                String Struk = rs.getString(2);
+                String Pol= rs.getString(3);
+                String Pinjam = rs.getString(4);
+                String Kembali= rs.getString(5);
+                String Motor = rs.getString(6);
+              
+               Object data[] = {Nama,Struk,Pol,Pinjam,Kembali,Motor};
+                
+                dtm.addRow(data);
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+        }tpesan.setModel(dtm);
+    
+        // TODO add your handling code here:
+              // TODO add your handling code here:
+    }//GEN-LAST:event_viewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,6 +395,7 @@ dispose();   // TODO add your handling code here:
     private javax.swing.JTextField struk;
     private javax.swing.JTable tpesan;
     private javax.swing.JRadioButton vario;
+    private javax.swing.JButton view;
     private javax.swing.JRadioButton vixion;
     // End of variables declaration//GEN-END:variables
 }

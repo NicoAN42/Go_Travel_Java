@@ -50,6 +50,7 @@ ResultSet resultset;
         jLabel4 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -75,7 +76,7 @@ ResultSet resultset;
                 adminadminActionPerformed(evt);
             }
         });
-        jPanel2.add(adminadmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 190, -1));
+        jPanel2.add(adminadmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 190, -1));
 
         jLabel5.setText("Terima Rental Motor , ");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
@@ -105,6 +106,15 @@ ResultSet resultset;
         });
         jPanel2.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 190, -1));
         jPanel2.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 190, -1));
+
+        back.setForeground(new java.awt.Color(102, 102, 102));
+        back.setText("BACK");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+        jPanel2.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 190, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 210, 370));
 
@@ -145,6 +155,11 @@ dispose();
         this.dispose();      // TODO add your handling code here:
     }//GEN-LAST:event_adminadminActionPerformed
 
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+  new home().show();
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_backActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -182,6 +197,7 @@ dispose();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adminadmin;
+    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

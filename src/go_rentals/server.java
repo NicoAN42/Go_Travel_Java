@@ -5,6 +5,10 @@
  */
 package go_rentals;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import static javax.swing.UIManager.getString;
 import javax.swing.table.DefaultTableModel;
@@ -48,6 +52,7 @@ public class server extends javax.swing.JFrame {
         alamatserver = new javax.swing.JTextField();
         namaserver = new javax.swing.JTextField();
         saveserver = new javax.swing.JButton();
+        view = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tserver = new javax.swing.JTable();
 
@@ -96,7 +101,7 @@ public class server extends javax.swing.JFrame {
                 logoutActionPerformed(evt);
             }
         });
-        jPanel2.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 190, -1));
+        jPanel2.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 190, -1));
 
         jLabel5.setText("Terima Rental Motor , ");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
@@ -128,7 +133,16 @@ public class server extends javax.swing.JFrame {
                 saveserverActionPerformed(evt);
             }
         });
-        jPanel2.add(saveserver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 190, -1));
+        jPanel2.add(saveserver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 90, -1));
+
+        view.setForeground(new java.awt.Color(102, 102, 102));
+        view.setText("VIEW");
+        view.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewActionPerformed(evt);
+            }
+        });
+        jPanel2.add(view, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 90, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 210, 370));
 
@@ -181,10 +195,10 @@ JOptionPane.showMessageDialog(this, "Harap Lengkapi Data", "Error", JOptionPane.
 }else{
     String SQL = "INSERT INTO tb_server (user,alamat)"+
             "VALUES('"+namaserver.getText()+"','"+alamatserver.getText()+"')";
-int status = KoneksiDB.con(SQL);
+int status = KoneksiDB.execute(SQL);
 if(status == 1){
     JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan","Sukses", JOptionPane.INFORMATION_MESSAGE);
-    ;
+    selectData();
 }else{
     JOptionPane.showMessageDialog(this,"Data gagal ditambahkan", "Sukses", JOptionPane.WARNING_MESSAGE);
 }
@@ -193,6 +207,32 @@ if(status == 1){
 
 // TODO add your handling code here:
     }//GEN-LAST:event_saveserverActionPerformed
+
+    private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
+ selectData();}
+        public void selectData(){
+        String kolom[] = {"Nama","Alamat"};
+        DefaultTableModel dtm = new DefaultTableModel(null,kolom);        //To change body of generated methods, choose Tools | Templates.
+        String SQL = "SELECT * FROM tb_server";
+        ResultSet rs = KoneksiDB.executeQuery(SQL);
+        
+  
+        try {
+            while(rs.next()) 
+            {
+                String Nama= rs.getString(1);
+                String Alamat = rs.getString(2);
+              
+               Object data[] = {Nama,Alamat};
+                
+                dtm.addRow(data);
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+        }tserver.setModel(dtm);
+    
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,7 +289,7 @@ if(status == 1){
     private javax.swing.JTextField namaserver;
     private javax.swing.JButton saveserver;
     private javax.swing.JTable tserver;
+    private javax.swing.JButton view;
     // End of variables declaration//GEN-END:variables
 
-    
-}
+  }

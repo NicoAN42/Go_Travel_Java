@@ -7,6 +7,7 @@ package go_rentals;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -71,6 +72,20 @@ status = st.executeUpdate(SQL);
 Logger.getLogger(KoneksiDB.class.getName()).log(Level.SEVERE, null, ex);
 }
 return status;
+}
+public static ResultSet executeQuery(String SQL) {
+ResultSet rs = null;
+Connection koneksi = setKoneksi();
+try {
+Statement st = koneksi.createStatement();
+rs = st.executeQuery(SQL);
+} catch (SQLException ex) {
+Logger.getLogger(KoneksiDB.class.getName()).log(Level.SEVERE, null, ex);
+}
+return rs;
+}
+static Object GetConnection() {
+throw new UnsupportedOperationException("Not supported yet.");
 }
     
     
