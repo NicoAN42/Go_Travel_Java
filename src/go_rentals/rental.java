@@ -44,7 +44,7 @@ public class rental extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        W = new javax.swing.JButton();
+        del = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -104,14 +104,14 @@ public class rental extends javax.swing.JFrame {
         jLabel4.setText("Nama");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
-        W.setForeground(new java.awt.Color(102, 102, 102));
-        W.setText("DEL");
-        W.addActionListener(new java.awt.event.ActionListener() {
+        del.setForeground(new java.awt.Color(102, 102, 102));
+        del.setText("DEL");
+        del.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                WActionPerformed(evt);
+                delActionPerformed(evt);
             }
         });
-        jPanel2.add(W, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 70, 30));
+        jPanel2.add(del, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 70, 30));
 
         jLabel10.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
         jLabel10.setText("Tgl.Pinjam");
@@ -234,9 +234,23 @@ public class rental extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void WActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_WActionPerformed
+    private void delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delActionPerformed
+    int baris = tpesan.getSelectedRow();
+    if (baris != -1){
+    String User = tpesan.getValueAt(baris, 0).toString();
+    String SQL = "DELETE FROM tb_rental WHERE User='"+User+"'";
+    int status = KoneksiDB.execute(SQL);
+    if (status==1) {
+        JOptionPane.showMessageDialog(this, "Data Berhasil dihapus", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        
+    }else {
+        JOptionPane.showMessageDialog(this, "Data Gagal dihapus", "Gagal", JOptionPane.WARNING_MESSAGE);
+    }
+    }else {
+    JOptionPane.showMessageDialog(this, "Pilih Baris Data Terlebih dahulu","Error",JOptionPane.WARNING_MESSAGE);// TODO add your handling code here:
+                                          
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_delActionPerformed
 
     private void vixionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vixionActionPerformed
         // TODO add your handling code here:
@@ -262,11 +276,9 @@ dispose();   // TODO add your handling code here:
     private void pesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesanActionPerformed
  String JK = "";
     if(vario.isSelected())
-{   
+{ JK = "Vario";  
 }
-    else  {
-    JK = "Vario";
-}      
+   
     if (vixion.isSelected())
     JK = "Vixion";
         if ("".equals(nama.getText()) || "".equals(struk.getText())|| "".equals(pol.getText())|| "".equals(pinjam.getText())|| "".equals(kembali.getText())){
@@ -276,7 +288,7 @@ JOptionPane.showMessageDialog(this, "Harap Lengkapi Data", "Error", JOptionPane.
 
 }else{
     String SQL = "INSERT INTO tb_rental (user,nstruk,npol,tglp,tglk,motor)"+
-            "VALUES('"+nama.getText()+"','"+struk.getText()+"','"+pol.getText()+"','"+pinjam.getText()+"','"+kembali.getText()+"')";
+            "VALUES('"+nama.getText()+"','"+struk.getText()+"','"+pol.getText()+"','"+pinjam.getText()+"','"+kembali.getText()+"','"+JK+"')";
 int status = KoneksiDB.execute(SQL);
 if(status == 1){
     JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan","Sukses", JOptionPane.INFORMATION_MESSAGE);
@@ -365,8 +377,8 @@ selectData();}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Durasi;
-    private javax.swing.JButton W;
     private javax.swing.ButtonGroup btng1;
+    private javax.swing.JButton del;
     private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
