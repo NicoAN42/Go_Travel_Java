@@ -57,10 +57,14 @@ public class rental extends javax.swing.JFrame {
         vario = new javax.swing.JRadioButton();
         jLabel14 = new javax.swing.JLabel();
         view = new javax.swing.JButton();
-        hasil = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        durasi = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jkembali = new com.toedter.calendar.JDateChooser();
+        jpinjam = new com.toedter.calendar.JDateChooser();
+        hasil = new javax.swing.JLabel();
+        durasi = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -115,8 +119,8 @@ public class rental extends javax.swing.JFrame {
         jPanel2.add(del, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 70, 30));
 
         jLabel10.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
-        jLabel10.setText("Durasi (Jam) ");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        jLabel10.setText("Kembali");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
         jLabel11.setText("No.Pol");
@@ -147,15 +151,15 @@ public class rental extends javax.swing.JFrame {
                 vixionActionPerformed(evt);
             }
         });
-        jPanel2.add(vixion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 130, -1));
+        jPanel2.add(vixion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 130, -1));
 
         btng1.add(vario);
         vario.setText("Vario");
-        jPanel2.add(vario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 130, -1));
+        jPanel2.add(vario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 130, -1));
 
         jLabel14.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
         jLabel14.setText("Motor");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
         view.setForeground(new java.awt.Color(102, 102, 102));
         view.setText("VIEW");
@@ -165,14 +169,24 @@ public class rental extends javax.swing.JFrame {
             }
         });
         jPanel2.add(view, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 70, 30));
-        jPanel2.add(hasil, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
 
         jLabel3.setText("Total Harga :");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
-        jPanel2.add(durasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 130, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         jLabel12.setText("Rp.");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
+        jLabel13.setText("Durasi(Hari) ");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
+        jLabel15.setText("Peminjaman");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        jPanel2.add(jkembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 130, -1));
+        jPanel2.add(jpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 130, -1));
+        jPanel2.add(hasil, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, -1, -1));
+        jPanel2.add(durasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 250, 320));
 
@@ -281,8 +295,14 @@ dispose();   // TODO add your handling code here:
     }//GEN-LAST:event_exitActionPerformed
 
     private void pesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesanActionPerformed
-
-          
+ SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String Pinjam = dateFormat.format(jpinjam.getDate());
+        String Kembali = dateFormat.format(jkembali.getDate());
+          long z = jpinjam.getDate().getTime();
+      long x = jkembali.getDate().getTime();
+      long c =  (x-z)/86400000;
+      
+      durasi.setText(String.valueOf(c));
       String a = durasi.getText();
       Integer d = Integer.parseInt(String.valueOf(a));
       Integer e = d * 20000 ;
@@ -399,14 +419,16 @@ selectData();}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btng1;
     private javax.swing.JButton del;
-    private javax.swing.JTextField durasi;
+    private javax.swing.JLabel durasi;
     private javax.swing.JButton exit;
     private javax.swing.JLabel hasil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -420,6 +442,8 @@ selectData();}
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private com.toedter.calendar.JDateChooser jkembali;
+    private com.toedter.calendar.JDateChooser jpinjam;
     private javax.swing.JTextField nama;
     private javax.swing.JButton pesan;
     private javax.swing.JTextField pol;
