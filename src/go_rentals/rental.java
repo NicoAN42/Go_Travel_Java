@@ -189,17 +189,17 @@ public class rental extends javax.swing.JFrame {
 
         tpesan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nama", "Struk", "Pol", "Pinjam", "Kembali", "Motor"
+                "id", "Nama", "Struk", "Pol", "Pinjam", "Kembali", "Motor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                true, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -237,8 +237,8 @@ public class rental extends javax.swing.JFrame {
     private void delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delActionPerformed
     int baris = tpesan.getSelectedRow();
     if (baris != -1){
-    String User = tpesan.getValueAt(baris, 0).toString();
-    String SQL = "DELETE FROM tb_rental WHERE User='"+User+"'";
+    String id = tpesan.getValueAt(baris, 0).toString();
+    String SQL = "DELETE FROM tb_rental WHERE id='"+id+"'";
     int status = KoneksiDB.execute(SQL);
     if (status==1) {
         JOptionPane.showMessageDialog(this, "Data Berhasil dihapus", "Sukses", JOptionPane.INFORMATION_MESSAGE);
@@ -312,7 +312,7 @@ selectData();}
 }      
     if (vixion.isSelected())
     JK = "Vixion";
-        String kolom[] = {"Nama","Struk","Pol","Pinjam","Kembali","Motor"};
+        String kolom[] = {"id","Nama","Struk","Pol","Pinjam","Kembali","Motor"};
         DefaultTableModel dtm = new DefaultTableModel(null,kolom);        //To change body of generated methods, choose Tools | Templates.
         String SQL = "SELECT * FROM tb_rental";
         ResultSet rs = KoneksiDB.executeQuery(SQL);
@@ -321,14 +321,15 @@ selectData();}
         try {
             while(rs.next()) 
             {
-                String Nama= rs.getString(1);
-                String Struk = rs.getString(2);
-                String Pol= rs.getString(3);
-                String Pinjam = rs.getString(4);
-                String Kembali= rs.getString(5);
-                String Motor = rs.getString(6);
+                String id = rs.getString(1);
+                String Nama= rs.getString(2);
+                String Struk = rs.getString(3);
+                String Pol= rs.getString(4);
+                String Pinjam = rs.getString(5);
+                String Kembali= rs.getString(6);
+                String Motor = rs.getString(7);
               
-               Object data[] = {Nama,Struk,Pol,Pinjam,Kembali,Motor};
+               Object data[] = {id,Nama,Struk,Pol,Pinjam,Kembali,Motor};
                 
                 dtm.addRow(data);
             }
