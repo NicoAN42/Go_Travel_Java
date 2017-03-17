@@ -5,6 +5,7 @@
  */
 package go_rentals;
 
+import static go_rentals.variabel.user;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -53,6 +54,7 @@ public class server extends javax.swing.JFrame {
         namaserver = new javax.swing.JTextField();
         saveserver = new javax.swing.JButton();
         view = new javax.swing.JButton();
+        del = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tserver = new javax.swing.JTable();
 
@@ -84,15 +86,15 @@ public class server extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
         jLabel2.setText("ALAMAT");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("DaunPenh", 1, 36)); // NOI18N
         jLabel3.setText("SERVER");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
         jLabel4.setText("NAMA");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
 
         logout.setForeground(new java.awt.Color(102, 102, 102));
         logout.setText("LOG OUT");
@@ -101,30 +103,30 @@ public class server extends javax.swing.JFrame {
                 logoutActionPerformed(evt);
             }
         });
-        jPanel2.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 190, -1));
+        jPanel2.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 190, -1));
 
         jLabel5.setText("Terima Rental Motor , ");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
         jLabel6.setText("Jl.Danau Buatan, Kota Malang");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
 
         jLabel7.setText("085 908 890 098");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
 
         jLabel8.setText("kami selalu ada disini :)\"");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, -1, -1));
 
         jLabel9.setText("\"Jangan malu, jangan risau ");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
-        jPanel2.add(alamatserver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 190, -1));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+        jPanel2.add(alamatserver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 190, -1));
 
         namaserver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 namaserverActionPerformed(evt);
             }
         });
-        jPanel2.add(namaserver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 190, -1));
+        jPanel2.add(namaserver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 190, -1));
 
         saveserver.setForeground(new java.awt.Color(102, 102, 102));
         saveserver.setText("SAVE");
@@ -133,7 +135,7 @@ public class server extends javax.swing.JFrame {
                 saveserverActionPerformed(evt);
             }
         });
-        jPanel2.add(saveserver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 90, -1));
+        jPanel2.add(saveserver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 190, -1));
 
         view.setForeground(new java.awt.Color(102, 102, 102));
         view.setText("VIEW");
@@ -142,7 +144,16 @@ public class server extends javax.swing.JFrame {
                 viewActionPerformed(evt);
             }
         });
-        jPanel2.add(view, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 90, -1));
+        jPanel2.add(view, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 90, -1));
+
+        del.setForeground(new java.awt.Color(102, 102, 102));
+        del.setText("DEL");
+        del.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delActionPerformed(evt);
+            }
+        });
+        jPanel2.add(del, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 90, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 210, 370));
 
@@ -150,17 +161,17 @@ public class server extends javax.swing.JFrame {
         tserver.setForeground(new java.awt.Color(102, 102, 102));
         tserver.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nama", "Alamat"
+                "Id", "Nama", "Alamat"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -211,7 +222,7 @@ if(status == 1){
     private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
  selectData();}
         public void selectData(){
-        String kolom[] = {"Nama","Alamat"};
+        String kolom[] = {"Id","Nama","Alamat"};
         DefaultTableModel dtm = new DefaultTableModel(null,kolom);        //To change body of generated methods, choose Tools | Templates.
         String SQL = "SELECT * FROM tb_server";
         ResultSet rs = KoneksiDB.executeQuery(SQL);
@@ -220,10 +231,11 @@ if(status == 1){
         try {
             while(rs.next()) 
             {
-                String Nama= rs.getString(1);
-                String Alamat = rs.getString(2);
+                String Id = rs.getString(1);
+                String Nama= rs.getString(2);
+                String Alamat = rs.getString(3);
               
-               Object data[] = {Nama,Alamat};
+               Object data[] = {Id,Nama,Alamat};
                 
                 dtm.addRow(data);
             }
@@ -233,6 +245,24 @@ if(status == 1){
     
         // TODO add your handling code here:
     }//GEN-LAST:event_viewActionPerformed
+
+    private void delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delActionPerformed
+ int baris = tserver.getSelectedRow();
+    if (baris != -1){
+    String id = tserver.getValueAt(baris, 0).toString();
+    String SQL = "DELETE FROM tb_server WHERE id='"+id+"'";
+    int status = KoneksiDB.execute(SQL);
+    if (status==1) {
+        JOptionPane.showMessageDialog(this, "Data Berhasil dihapus", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+        
+    }else {
+        JOptionPane.showMessageDialog(this, "Data Gagal dihapus", "Gagal", JOptionPane.WARNING_MESSAGE);
+    }
+    }else {
+    JOptionPane.showMessageDialog(this, "Pilih Baris Data Terlebih dahulu","Error",JOptionPane.WARNING_MESSAGE);// TODO add your handling code here:
+                                          
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_delActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,6 +301,7 @@ if(status == 1){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField alamatserver;
+    private javax.swing.JButton del;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

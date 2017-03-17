@@ -8,6 +8,7 @@ package go_rentals;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -25,6 +26,7 @@ public class rental extends javax.swing.JFrame {
      */
     public rental() {
         initComponents();
+         selectData();
     }
 
     /**
@@ -47,19 +49,18 @@ public class rental extends javax.swing.JFrame {
         del = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        Durasi = new javax.swing.JLabel();
         pesan = new javax.swing.JButton();
-        kembali = new javax.swing.JTextField();
         nama = new javax.swing.JTextField();
         struk = new javax.swing.JTextField();
         pol = new javax.swing.JTextField();
-        pinjam = new javax.swing.JTextField();
         vixion = new javax.swing.JRadioButton();
         vario = new javax.swing.JRadioButton();
-        lama = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         view = new javax.swing.JButton();
+        hasil = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        durasi = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -114,20 +115,12 @@ public class rental extends javax.swing.JFrame {
         jPanel2.add(del, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 70, 30));
 
         jLabel10.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
-        jLabel10.setText("Tgl.Pinjam");
+        jLabel10.setText("Durasi (Jam) ");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
         jLabel11.setText("No.Pol");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
-        jLabel12.setText("Tgl.Kembali");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
-
-        Durasi.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
-        Durasi.setText("Durasi");
-        jPanel2.add(Durasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
         pesan.setForeground(new java.awt.Color(102, 102, 102));
         pesan.setText("SAVE");
@@ -137,11 +130,15 @@ public class rental extends javax.swing.JFrame {
             }
         });
         jPanel2.add(pesan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 70, 30));
-        jPanel2.add(kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 130, -1));
         jPanel2.add(nama, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 130, -1));
         jPanel2.add(struk, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 130, -1));
+
+        pol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                polActionPerformed(evt);
+            }
+        });
         jPanel2.add(pol, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 130, -1));
-        jPanel2.add(pinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 130, -1));
 
         btng1.add(vixion);
         vixion.setText("Vixion");
@@ -150,16 +147,15 @@ public class rental extends javax.swing.JFrame {
                 vixionActionPerformed(evt);
             }
         });
-        jPanel2.add(vixion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 130, -1));
+        jPanel2.add(vixion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 130, -1));
 
         btng1.add(vario);
         vario.setText("Vario");
-        jPanel2.add(vario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 130, -1));
-        jPanel2.add(lama, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 130, -1));
+        jPanel2.add(vario, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 130, -1));
 
         jLabel14.setFont(new java.awt.Font("DaunPenh", 1, 18)); // NOI18N
         jLabel14.setText("Motor");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
         view.setForeground(new java.awt.Color(102, 102, 102));
         view.setText("VIEW");
@@ -169,6 +165,14 @@ public class rental extends javax.swing.JFrame {
             }
         });
         jPanel2.add(view, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 70, 30));
+        jPanel2.add(hasil, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, -1, -1));
+
+        jLabel3.setText("Total Harga :");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+        jPanel2.add(durasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 130, -1));
+
+        jLabel12.setText("Rp.");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 250, 320));
 
@@ -189,17 +193,17 @@ public class rental extends javax.swing.JFrame {
 
         tpesan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "id", "Nama", "Struk", "Pol", "Pinjam", "Kembali", "Motor"
+                "id", "Nama", "Struk", "Pol", "Motor", "Durasi"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -207,6 +211,9 @@ public class rental extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tpesan);
+        if (tpesan.getColumnModel().getColumnCount() > 0) {
+            tpesan.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 540, 90));
 
@@ -274,21 +281,30 @@ dispose();   // TODO add your handling code here:
     }//GEN-LAST:event_exitActionPerformed
 
     private void pesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesanActionPerformed
- String JK = "";
+
+          
+      String a = durasi.getText();
+      Integer d = Integer.parseInt(String.valueOf(a));
+      Integer e = d * 20000 ;
+      hasil.setText(String.valueOf(e));
+     
+      
+
+        String JK = "";
     if(vario.isSelected())
 { JK = "Vario";  
 }
-   
+  
     if (vixion.isSelected())
     JK = "Vixion";
-        if ("".equals(nama.getText()) || "".equals(struk.getText())|| "".equals(pol.getText())|| "".equals(pinjam.getText())|| "".equals(kembali.getText())){
+        if ("".equals(nama.getText()) || "".equals(struk.getText())|| "".equals(pol.getText())|| "".equals(durasi.getText())){
 JOptionPane.showMessageDialog(this, "Harap Lengkapi Data", "Error", JOptionPane.WARNING_MESSAGE);
 
 
 
 }else{
-    String SQL = "INSERT INTO tb_rental (user,nstruk,npol,tglp,tglk,motor)"+
-            "VALUES('"+nama.getText()+"','"+struk.getText()+"','"+pol.getText()+"','"+pinjam.getText()+"','"+kembali.getText()+"','"+JK+"')";
+    String SQL = "INSERT INTO tb_rental (user,nstruk,npol,motor,durasi)"+
+            "VALUES('"+nama.getText()+"','"+struk.getText()+"','"+pol.getText()+"','"+JK+"','"+durasi.getText()+"')";
 int status = KoneksiDB.execute(SQL);
 if(status == 1){
     JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan","Sukses", JOptionPane.INFORMATION_MESSAGE);
@@ -297,7 +313,7 @@ if(status == 1){
     JOptionPane.showMessageDialog(this,"Data gagal ditambahkan", "Sukses", JOptionPane.WARNING_MESSAGE);
 }
 
-}        // TODO add your handling code here:
+}       // TODO add your handling code here:
     }//GEN-LAST:event_pesanActionPerformed
 
     private void viewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewActionPerformed
@@ -312,7 +328,7 @@ selectData();}
 }      
     if (vixion.isSelected())
     JK = "Vixion";
-        String kolom[] = {"id","Nama","Struk","Pol","Pinjam","Kembali","Motor"};
+        String kolom[] = {"id","Nama","Struk","Pol","Motor","Durasi"};
         DefaultTableModel dtm = new DefaultTableModel(null,kolom);        //To change body of generated methods, choose Tools | Templates.
         String SQL = "SELECT * FROM tb_rental";
         ResultSet rs = KoneksiDB.executeQuery(SQL);
@@ -325,11 +341,11 @@ selectData();}
                 String Nama= rs.getString(2);
                 String Struk = rs.getString(3);
                 String Pol= rs.getString(4);
-                String Pinjam = rs.getString(5);
-                String Kembali= rs.getString(6);
-                String Motor = rs.getString(7);
+                String Motor = rs.getString(5);
+                String Durasi = rs.getString(6);
+                
               
-               Object data[] = {id,Nama,Struk,Pol,Pinjam,Kembali,Motor};
+               Object data[] = {id,Nama,Struk,Pol,Motor,Durasi};
                 
                 dtm.addRow(data);
             }
@@ -340,6 +356,10 @@ selectData();}
         // TODO add your handling code here:
               // TODO add your handling code here:
     }//GEN-LAST:event_viewActionPerformed
+
+    private void polActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_polActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,16 +397,18 @@ selectData();}
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Durasi;
     private javax.swing.ButtonGroup btng1;
     private javax.swing.JButton del;
+    private javax.swing.JTextField durasi;
     private javax.swing.JButton exit;
+    private javax.swing.JLabel hasil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -398,11 +420,8 @@ selectData();}
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField kembali;
-    private javax.swing.JTextField lama;
     private javax.swing.JTextField nama;
     private javax.swing.JButton pesan;
-    private javax.swing.JTextField pinjam;
     private javax.swing.JTextField pol;
     private javax.swing.JButton print;
     private javax.swing.JTextField struk;
