@@ -8,7 +8,7 @@
      ![4](https://github.com/NicoAN42/Go_Travel_Java/blob/master/d.PNG "")
   
 # KLIK ON THIS PICTURE
-   [![1](https://github.com/NicoAN42/Go_Travel_Java/blob/master/Go%20Rentals%20logo.JPG "")](https://youtu.be/0y5W8xiuHgQ)
+   [![1](https://github.com/NicoAN42/Go_Travel_Java/blob/master/e.PNG "")](https://youtu.be/0y5W8xiuHgQ)
 
 
 # BIODATA
