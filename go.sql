@@ -1,0 +1,91 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Mar 17, 2017 at 04:57 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `go`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_admin`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_admin` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
+  `user` text NOT NULL,
+  `pass` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tb_admin`
+--
+
+INSERT INTO `tb_admin` (`id`, `user`, `pass`) VALUES
+(1, 'nico', 'nico'),
+(2, 'admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_rental`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_rental` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` text NOT NULL,
+  `nstruk` int(100) NOT NULL,
+  `npol` text NOT NULL,
+  `motor` text NOT NULL,
+  `durasi` int(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+
+--
+-- Dumping data for table `tb_rental`
+--
+
+INSERT INTO `tb_rental` (`id`, `user`, `nstruk`, `npol`, `motor`, `durasi`) VALUES
+(18, 'Nico', 1, 'N1CO', 'Vario', 1),
+(19, 'Kiki', 2, 'N123KN', 'Vario', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_server`
+--
+
+CREATE TABLE IF NOT EXISTS `tb_server` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
+  `user` text NOT NULL,
+  `alamat` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `tb_server`
+--
+
+INSERT INTO `tb_server` (`id`, `user`, `alamat`) VALUES
+(7, 'Nico', 'Blitar'),
+(8, 'Nico', 'Blitar');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
