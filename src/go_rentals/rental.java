@@ -278,7 +278,7 @@ public class rental extends javax.swing.JFrame {
     }//GEN-LAST:event_vixionActionPerformed
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
-MessageFormat header = new MessageFormat("Biodata SIswa SMK Telkom Malan");
+MessageFormat header = new MessageFormat("Data Go Rental Indonesia");
     MessageFormat footer = new MessageFormat("Page {0,number,integer} ");
    try{
        tpesan.print(JTable.PrintMode.FIT_WIDTH, header, footer, true, null, true, null);
