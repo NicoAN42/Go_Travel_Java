@@ -19,12 +19,14 @@ import javax.swing.table.DefaultTableModel;
  * @author USER-ACER-PC
  */
 public class server extends javax.swing.JFrame {
-
+ 
     /**
      * Creates new form server
      */
     public server() {
         initComponents();
+          ;
+        
     }
 
     /**
@@ -189,7 +191,7 @@ public class server extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void namaserverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaserverActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_namaserverActionPerformed
 
     private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed

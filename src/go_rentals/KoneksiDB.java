@@ -37,8 +37,7 @@ public class KoneksiDB {
     public KoneksiDB() {
         try{
             Object newInstance = Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection=DriverManager.getConnection("jdbc:mysql://localhost/go","root","");
-
+            
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Gagal Koneksi - " + e.getMessage());

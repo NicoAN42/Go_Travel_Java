@@ -5,6 +5,8 @@
  */
 package go_rentals;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.MessageFormat;
@@ -74,6 +76,9 @@ public class rental extends javax.swing.JFrame {
         tpesan = new javax.swing.JTable();
         print = new javax.swing.JButton();
         exit = new javax.swing.JButton();
+        bymotor = new javax.swing.JButton();
+        bynama = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -249,6 +254,28 @@ public class rental extends javax.swing.JFrame {
         });
         jPanel1.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 410, 270, 30));
 
+        bymotor.setForeground(new java.awt.Color(102, 102, 102));
+        bymotor.setText("Motor");
+        bymotor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bymotorActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bymotor, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
+
+        bynama.setForeground(new java.awt.Color(102, 102, 102));
+        bynama.setText("Nama");
+        bynama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bynamaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bynama, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, -1, -1));
+
+        jLabel16.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        jLabel16.setText("Search By.");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 440));
 
         pack();
@@ -350,7 +377,7 @@ selectData();}
     JK = "Vixion";
         String kolom[] = {"id","Nama","Struk","Pol","Motor","Durasi"};
         DefaultTableModel dtm = new DefaultTableModel(null,kolom);        //To change body of generated methods, choose Tools | Templates.
-        String SQL = "SELECT * FROM tb_rental";
+        String SQL = "SELECT * FROM tb_rental ";
         ResultSet rs = KoneksiDB.executeQuery(SQL);
         
   
@@ -380,6 +407,66 @@ selectData();}
     private void polActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_polActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_polActionPerformed
+
+    private void bynamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bynamaActionPerformed
+
+      String kolom[] = {"id","Nama","Struk","Pol","Motor","Durasi"};
+      String x=JOptionPane.showInputDialog(null, "Masukkan Nama");
+      String cari="SELECT * FROM tb_rental WHERE user='"+x+"'";
+      DefaultTableModel dtm = new DefaultTableModel(null,kolom);        //To change body of generated methods, choose Tools | Templates.    
+    try{    
+    Connection connection=DriverManager.getConnection("jdbc:mysql://localhost/go","root","");
+     ResultSet rs = KoneksiDB.executeQuery(cari);
+     if(rs.next())
+     {
+         System.out.print(rs.getString(2));
+         JOptionPane.showMessageDialog(null, "Data Ditemukan");
+         selectData();
+         String id = rs.getString(1);
+                String Nama= rs.getString(2);
+                String Struk = rs.getString(3);
+                String Pol= rs.getString(4);
+                String Motor = rs.getString(5);
+                String Durasi = rs.getString(6);
+                            
+               Object data[] = {id,Nama,Struk,Pol,Motor,Durasi};                
+                dtm.addRow(data); 
+     }
+}catch(SQLException ex) {
+            Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+        }tpesan.setModel(dtm);
+       // TODO add your handling code here:
+    }//GEN-LAST:event_bynamaActionPerformed
+
+    private void bymotorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bymotorActionPerformed
+
+        
+      String kolom[] = {"id","Nama","Struk","Pol","Motor","Durasi"};
+      String x=JOptionPane.showInputDialog(null, "Masukkan Nama");
+      String cari="SELECT * FROM tb_rental WHERE motor='"+x+"'";
+      DefaultTableModel dtm = new DefaultTableModel(null,kolom);        //To change body of generated methods, choose Tools | Templates.    
+    try{    
+    Connection connection=DriverManager.getConnection("jdbc:mysql://localhost/go","root","");
+     ResultSet rs = KoneksiDB.executeQuery(cari);
+     if(rs.next())
+     {
+         System.out.print(rs.getString(5));
+         JOptionPane.showMessageDialog(null, "Data Ditemukan");
+         selectData();
+         String id = rs.getString(1);
+                String Nama= rs.getString(2);
+                String Struk = rs.getString(3);
+                String Pol= rs.getString(4);
+                String Motor = rs.getString(5);
+                String Durasi = rs.getString(6);
+                            
+               Object data[] = {id,Nama,Struk,Pol,Motor,Durasi};                
+                dtm.addRow(data); 
+     }
+}catch(SQLException ex) {
+            Logger.getLogger(server.class.getName()).log(Level.SEVERE, null, ex);
+        }tpesan.setModel(dtm);
+    }//GEN-LAST:event_bymotorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -418,6 +505,8 @@ selectData();}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btng1;
+    private javax.swing.JButton bymotor;
+    private javax.swing.JButton bynama;
     private javax.swing.JButton del;
     private javax.swing.JLabel durasi;
     private javax.swing.JButton exit;
@@ -429,6 +518,7 @@ selectData();}
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

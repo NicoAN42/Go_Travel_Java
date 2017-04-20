@@ -8,7 +8,11 @@ package go_rentals;
 import go_rentals.KoneksiDB.con;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -19,12 +23,14 @@ public class admin extends javax.swing.JFrame {
 ResultSet resultset;
     Statement statement;
     KoneksiDB con;
+    private server m;
     /**
 
      */
     public admin() {
           initComponents();
         con = new KoneksiDB();
+          m=new server();setLocationRelativeTo(null);
     }
 
     /**
@@ -36,6 +42,7 @@ ResultSet resultset;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -44,13 +51,16 @@ ResultSet resultset;
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         password = new javax.swing.JPasswordField();
         back = new javax.swing.JButton();
+        adminsign = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -76,22 +86,16 @@ ResultSet resultset;
                 adminadminActionPerformed(evt);
             }
         });
-        jPanel2.add(adminadmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 190, -1));
+        jPanel2.add(adminadmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 190, -1));
 
         jLabel5.setText("Terima Rental Motor , ");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
 
         jLabel6.setText("Jl.Danau Buatan, Kota Malang");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
         jLabel7.setText("085 908 890 098");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
-
-        jLabel8.setText("kami selalu ada disini :)\"");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
-
-        jLabel9.setText("\"Jangan malu, jangan risau ");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
 
         jLabel2.setText("Password");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
@@ -114,9 +118,24 @@ ResultSet resultset;
                 backActionPerformed(evt);
             }
         });
-        jPanel2.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 190, -1));
+        jPanel2.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 190, -1));
+
+        adminsign.setForeground(new java.awt.Color(102, 102, 102));
+        adminsign.setText("SIGN UP");
+        adminsign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminsignActionPerformed(evt);
+            }
+        });
+        jPanel2.add(adminsign, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 190, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 210, 370));
+
+        jLabel9.setText("\"Jangan malu, jangan risau ");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, -1));
+
+        jLabel8.setText("kami selalu ada disini :)\"");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 370));
 
@@ -151,8 +170,10 @@ dispose();
   }catch(Exception e){
       JOptionPane.showMessageDialog(null, e.getMessage(),"Pesan",JOptionPane.ERROR_MESSAGE);
   }
-     
-        this.dispose();      // TODO add your handling code here:
+      
+        this.dispose();
+        
+        // TODO add your handling code here:
     }//GEN-LAST:event_adminadminActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
@@ -160,6 +181,35 @@ dispose();
 dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_backActionPerformed
 
+    private void adminsignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminsignActionPerformed
+     if ("".equals(username.getText()) || "".equals(password.getText())){
+JOptionPane.showMessageDialog(this, "Harap Lengkapi Data", "Error", JOptionPane.WARNING_MESSAGE);
+
+
+
+}else{
+    String SQL = "INSERT INTO tb_admin (user,pass)"+
+            "VALUES('"+username.getText()+"','"+password.getText()+"')";
+int status = KoneksiDB.execute(SQL);
+if(status == 1){
+    JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan","Sukses", JOptionPane.INFORMATION_MESSAGE);
+    selectData();
+}else{
+    JOptionPane.showMessageDialog(this,"Data gagal ditambahkan", "Sukses", JOptionPane.WARNING_MESSAGE);
+}} // TODO add your handling code here:
+    }//GEN-LAST:event_adminsignActionPerformed
+    
+     public void selectData(){
+        String kolom[] = {"user","pass"};
+           //To change body of generated methods, choose Tools | Templates.
+        String SQL = "SELECT * FROM tb_admin";
+       
+        
+  
+        
+    
+        // TODO add your handling code here:
+    } 
     /**
      * @param args the command line arguments
      */
@@ -197,7 +247,9 @@ dispose();        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adminadmin;
+    private javax.swing.JButton adminsign;
     private javax.swing.JButton back;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
