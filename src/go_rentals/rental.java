@@ -24,6 +24,10 @@ import javax.swing.table.DefaultTableModel;
 public class rental extends javax.swing.JFrame {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -257366305019316602L;
+	/**
      * Creates new form rental
      */
     public rental() {

@@ -20,6 +20,10 @@ import javax.swing.table.DefaultTableModel;
  * @author USER-ACER-PC
  */
 public class admin extends javax.swing.JFrame {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2928584830500147799L;
 ResultSet resultset;
     Statement statement;
     KoneksiDB con;

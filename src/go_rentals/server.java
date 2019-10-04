@@ -21,6 +21,10 @@ import javax.swing.table.DefaultTableModel;
 public class server extends javax.swing.JFrame {
  
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7378911407330813347L;
+	/**
      * Creates new form server
      */
     public server() {
