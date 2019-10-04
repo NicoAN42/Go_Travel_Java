@@ -14,6 +14,10 @@ import javax.swing.JOptionPane;
 public class home extends javax.swing.JFrame {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2812825552809591273L;
+	/**
      * Creates new form home
      */
     public home() {
